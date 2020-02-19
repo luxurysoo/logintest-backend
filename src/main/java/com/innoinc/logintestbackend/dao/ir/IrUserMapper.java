@@ -1,7 +1,7 @@
 /**
  * IrUser DAO
  * 
- * @author 박민성
+ * @author ???
  */
 
 package com.innoinc.logintestbackend.dao.ir;

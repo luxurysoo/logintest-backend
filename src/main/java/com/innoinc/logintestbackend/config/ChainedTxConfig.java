@@ -19,7 +19,11 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class ChainedTxConfig {
     /**
-     * 각 DatabaseConfig의 txmanger been을 파라메타로 전부 추가
+     * 각 DatabaseConfig의 txmanger been을 파라메타, retrun에 추가 전부 추가
+     * ex)
+     *   PlatformTransactionManager postgresTxManager, mssqlTxManager) {
+     *   return new ChainedTransactionManager(
+     *   		postgresTxManager, mssqlTxManager);
      * 
      * @param postgresTxManager
      * @return

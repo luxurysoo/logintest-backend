@@ -2,6 +2,8 @@
  * Database 설정
  * 
  * DB 1개당 하나의 DatabaseConfig를 생성해야한다.
+ * 서브 DataConfig를 사용할 시 서브 dataconfig에서는 @Primary 어노테이션 제거
+ * @Primary는 단 1개의 DB에서만 사용
  *
  * @author 박민성
  */
@@ -46,7 +48,7 @@ public class PostgresDatabaseConfig {
 	@Primary
 	@ConfigurationProperties(prefix = "spring.postgres.datasource")
     public DataSource postgresDataSource() {
-		return DataSourceBuilder.create().build();
+        return DataSourceBuilder.create().build();
     }
  
 

@@ -18,7 +18,6 @@ import lombok.Data;
 @Alias("iruser")
 public class IrUser 
 {
-
 	private String user_id;
 	
 	private String user_name;
