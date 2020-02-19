@@ -1,3 +1,11 @@
+/**
+ * Database 설정
+ * 
+ * DB 1개당 하나의 DatabaseConfig를 생성해야한다.
+ *
+ * @author 박민성
+ */
+
 package com.innoinc.logintestbackend.config;
 
 import javax.sql.DataSource;
@@ -17,11 +25,23 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
+
+/**
+ * propertySource db.properties 경로 지정
+ * MapperScan Mapper 경로 지정
+ */
 @Configuration
 @PropertySource({"classpath:/db.properties"})
 @MapperScan(value="com.innoinc.logintestbackend.dao", sqlSessionFactoryRef="postgresSqlSessionFactory")
 public class PostgresDatabaseConfig {
-	
+    
+    /**
+     * DataSource 설정 
+     *
+     * HikariCP를 사용
+     * 
+     * ConfigurationProperties db.properties 속성을 매핑한다.
+     */
 	@Bean(name = "postgresDataSource")
 	@Primary
 	@ConfigurationProperties(prefix = "spring.postgres.datasource")
@@ -29,6 +49,14 @@ public class PostgresDatabaseConfig {
 		return DataSourceBuilder.create().build();
     }
  
+
+    
+    /**
+     * SessionFactory 설정
+     * 
+     * setTypeAliasePackage model의 경로 지정
+     * setMapperLocations Mapper.xml의 경로 지정
+     */
     @Bean(name = "postgresSqlSessionFactory")
     @Primary
     public SqlSessionFactory postgresSqlSessionFactory(@Qualifier("postgresDataSource") DataSource postgresDataSource, ApplicationContext applicationContext) throws Exception {
@@ -39,6 +67,14 @@ public class PostgresDatabaseConfig {
         return sqlSessionFactoryBean.getObject();
     }
  
+
+    /**
+     * SeesionTemplate 설정
+     * 
+     * @param postgresSqlSessionFactory
+     * @return
+     * @throws Exception
+     */
     @Bean(name = "postgresSqlSessionTemplate")
     @Primary
     public SqlSessionTemplate postgresSqlSessionTemplate(SqlSessionFactory postgresSqlSessionFactory) throws Exception {
@@ -46,6 +82,13 @@ public class PostgresDatabaseConfig {
         return new SqlSessionTemplate(postgresSqlSessionFactory);
     }
     
+
+    /**
+     * TxManger 설정
+     * 
+     * @param postgresDataSource
+     * @return
+     */
     @Bean(name = "postgresTxManager")
     public PlatformTransactionManager postgresTxManager(DataSource postgresDataSource) {
         return new DataSourceTransactionManager(postgresDataSource);

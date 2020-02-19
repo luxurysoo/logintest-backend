@@ -1,3 +1,11 @@
+/**
+ * UserController
+ * 
+ * 사용자와 관련된 데이터의 RESTAPI Controller
+ * 
+ * @author 박민성
+ */
+
 package com.innoinc.logintestbackend.controller;
 
 import java.util.ArrayList;
@@ -28,7 +36,13 @@ public class UserController {
     IrUser iruser;
     String asccessToken;
 
-    //로그인 인증
+    /**
+     * 로그인 인증부분
+     * 
+     * 유저 아이디체크 후 아이디가 있을 경우 true을 준다.
+     * 
+     * @return Json Hashmap
+     */
     @GetMapping("/json/manage/login")
     public Map<String,String> dataReturn(
             @RequestParam(value="userid", required=false) String userid
@@ -48,7 +62,12 @@ public class UserController {
         return userMap;
     }
 
-    //유저정보
+    /**
+     * 
+     * 모든 유저의 데이터를 줌
+     * 
+     * @return Json Array
+     */
     @GetMapping("/json/manage/user")
     public ArrayList<Map<String,String>> dataReturn() {
         ArrayList<Map<String,String>> data = new ArrayList<>();

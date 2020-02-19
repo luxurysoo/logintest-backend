@@ -1,3 +1,9 @@
+/**
+ * IrUser table service
+ * 
+ * DAO에 구현된 메소드를 사용
+ */
+
 package com.innoinc.logintestbackend.service;
 
 import java.util.List;

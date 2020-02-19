@@ -1,3 +1,11 @@
+/**
+ * Ir_user table Model
+ * 
+ * 테이블 속성을 매핑
+ * 
+ * @author 박민성
+ */
+
 package com.innoinc.logintestbackend.model.ir;
 
 import java.util.Date;

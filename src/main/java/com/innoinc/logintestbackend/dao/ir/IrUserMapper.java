@@ -1,3 +1,9 @@
+/**
+ * IrUser DAO
+ * 
+ * @author 박민성
+ */
+
 package com.innoinc.logintestbackend.dao.ir;
 
 import java.util.List;
