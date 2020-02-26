@@ -68,7 +68,7 @@ public class PostgresDatabaseConfig {
         sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis/**/*.xml"));
         return sqlSessionFactoryBean.getObject();
     }
- 
+
 
     /**
      * SeesionTemplate 설정
